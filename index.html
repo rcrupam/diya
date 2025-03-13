@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            text-align: center;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        h1 {
+            font-size: 2.8em;
+            animation: slideDown 1.5s ease-in-out;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #fff;
+            color: #ff758c;
+            font-size: 1.2em;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #ffebeb;
+        }
+        .hidden { display: none; }
+        .note-box {
+            background: rgba(255, 255, 255, 0.8);
+            color: #ff758c;
+            padding: 15px;
+            margin: 10px auto;
+            border-radius: 10px;
+            max-width: 600px;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy 1st Month Anniversary, My Love! ❤️</h1>
+        <p>Every moment with you is a beautiful memory. I love you more than words can express.</p>
+        
+        <button id="showBtn" class="btn" onclick="showVideo()">See Our Moments 💖</button>
+        
+        <div id="videoContainer" class="hidden">
+            <video id="videoElement" width="100%" max-width="600px" controls>
+                <source src="video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <button id="nextBtn" class="btn hidden" onclick="showGallery()">See Our Photos 📸</button>
+        
+        <audio id="bgMusic" loop>
+            <source src="tum_hi_ho.mp3" type="audio/mp3">
+        </audio>
+        
+        <div id="noteContainer"></div>
+    </div>
+    
+    <script>
+        function showVideo() {
+            document.getElementById("videoContainer").classList.remove("hidden");
+            document.getElementById("showBtn").style.display = "none";
+            let video = document.getElementById("videoElement");
+            video.play();
+            video.onended = function() {
+                document.getElementById("nextBtn").classList.remove("hidden");
+            };
+        }
+
+        function showGallery() {
+            let notes = [
+                "Your smile brightens up even my darkest days. 😊❤️",
+                "Your laughter is my favorite melody in this world. 🎶💖",
+                "Every moment with you feels like a beautiful dream. ✨💕",
+                "Your kindness and love make my life so much better. 💖🌸",
+                "You are my safe haven, my heart belongs to you. 🏡❤️",
+                "Your eyes hold the universe, and I get lost in them. 🌌😍",
+                "With every heartbeat, I fall deeper in love with you. 💓😊",
+                "Your love is the most beautiful gift I’ve ever received. 🎁💞",
+                "You make the world more colorful just by being in it. 🌈💗",
+                "I promise to cherish you and love you endlessly. ❤️🌹"
+            ];
+            let noteContainer = document.getElementById("noteContainer");
+            let index = 0;
+            
+            function showNextNote() {
+                if (index < notes.length) {
+                    noteContainer.innerHTML = `<div class='note-box'>${notes[index]}</div>`;
+                    setTimeout(() => {
+                        index++;
+                        showNextNote();
+                    }, 3000);
+                }
+            }
+            document.getElementById("bgMusic").play();
+            showNextNote();
+        }
+    </script>
+</body>
+</html>
